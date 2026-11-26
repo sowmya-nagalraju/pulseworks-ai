@@ -1,32 +1,35 @@
 
+import Navbar from './components/Navbar'
 import SystemBanner from './components/SystemBanner'
 
 function App() {
   return (
     <div className="min-h-screen bg-slate-50">
 
-      <header className="bg-white border-b border-slate-200 px-8 py-5">
-        <h1 className="text-2xl font-bold text-slate-900">
-          PulseWorks AI
-        </h1>
+      {/* APPLICATION NAVBAR */}
 
-        <p className="text-sm text-slate-500 mt-1">
-          Secure Enterprise Workspace
-        </p>
-      </header>
+      <Navbar />
 
-      <main className="max-w-7xl mx-auto px-6 py-8">
+      {/* MAIN CONTENT */}
+
+      <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+
+        {/* SYSTEM STATUS */}
 
         <SystemBanner />
 
+        {/* WELCOME SECTION */}
+
         <section className="mt-8">
-          <h2 className="text-2xl font-bold text-slate-900">
+
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
             Welcome to PulseWorks AI
           </h2>
 
           <p className="text-slate-500 mt-2">
-            Your enterprise workspace is being initialized.
+            Your secure enterprise workspace is being initialized.
           </p>
+
         </section>
 
       </main>
