@@ -12,6 +12,10 @@ import StatCard from '../components/StatCard'
 import ProjectCard from '../components/ProjectCard'
 import ActivityFeed from '../components/ActivityFeed'
 
+interface DashboardProps {
+  onCreateNew: () => void
+}
+
 const stats = [
   {
     title: 'Total Projects',
@@ -85,7 +89,7 @@ const projects = [
   },
 ]
 
-function Dashboard() {
+function Dashboard({ onCreateNew }: DashboardProps) {
   const formattedDate = new Intl.DateTimeFormat('en-IN', {
     weekday: 'long',
     day: 'numeric',
@@ -95,6 +99,7 @@ function Dashboard() {
 
   return (
     <div className="space-y-8">
+
       {/* WELCOME */}
       <section className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -113,6 +118,7 @@ function Dashboard() {
 
         <button
           type="button"
+          onClick={onCreateNew}
           className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition"
         >
           <Plus size={18} />

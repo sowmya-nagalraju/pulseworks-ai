@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import {
   LayoutDashboard,
@@ -16,6 +17,8 @@ import {
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
+  activeItem: string
+  onNavigate: (page: string) => void
 }
 
 const navigationItems = [
@@ -27,18 +30,21 @@ const navigationItems = [
   { label: 'Analytics', icon: ChartNoAxesCombined },
 ]
 
-function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const [activeItem, setActiveItem] = useState('Dashboard')
+function Sidebar({
+  isOpen,
+  onClose,
+  activeItem,
+  onNavigate,
+}: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false)
 
   const handleNavigation = (label: string) => {
-    setActiveItem(label)
+    onNavigate(label)
     onClose()
   }
 
   return (
     <>
-      {/* MOBILE BACKDROP */}
       {isOpen && (
         <button
           type="button"
@@ -60,13 +66,13 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
           md:translate-x-0
         `}
       >
-        {/* SIDEBAR HEADER */}
         <div className="flex items-center justify-between px-5 py-5 border-b border-slate-700">
           {!collapsed && (
             <div>
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
                 Workspace
               </p>
+
               <p className="text-sm text-white font-semibold mt-1">
                 Main Menu
               </p>
@@ -96,7 +102,6 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
           </button>
         </div>
 
-        {/* NAVIGATION */}
         <nav className="flex-1 px-3 py-5 space-y-2 overflow-y-auto">
           {!collapsed && (
             <p className="px-3 mb-3 text-[10px] font-bold text-slate-500 uppercase tracking-[2px]">
@@ -115,9 +120,8 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
                 onClick={() => handleNavigation(item.label)}
                 title={collapsed ? item.label : undefined}
                 className={`
-                  w-full flex items-center gap-3
-                  px-3 py-3 rounded-xl text-sm
-                  transition-all duration-200
+                  w-full flex items-center gap-3 px-3 py-3
+                  rounded-xl text-sm transition-all duration-200
                   ${
                     isActive
                       ? 'bg-blue-600 text-white shadow-lg shadow-blue-950/30'
@@ -163,7 +167,6 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
         </nav>
 
-        {/* UPGRADE CARD */}
         {!collapsed && (
           <div className="p-4">
             <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 p-4">
