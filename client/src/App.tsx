@@ -1,7 +1,10 @@
+
 import { useState } from 'react'
+
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import SystemBanner from './components/SystemBanner'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -25,17 +28,11 @@ function App() {
             Open Workspace Menu
           </button>
 
-          <SystemBanner />
+          <div className="mb-8">
+            <SystemBanner />
+          </div>
 
-          <section className="mt-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-              Welcome to PulseWorks AI
-            </h2>
-
-            <p className="text-slate-500 mt-2">
-              Your secure enterprise workspace is being initialized.
-            </p>
-          </section>
+          <Dashboard />
         </main>
       </div>
     </div>
