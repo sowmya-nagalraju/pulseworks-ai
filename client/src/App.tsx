@@ -7,6 +7,8 @@ import SystemBanner from './components/SystemBanner'
 
 import Dashboard from './pages/Dashboard'
 import Tasks from './pages/Tasks'
+import Analytics from './pages/Analytics'
+import Settings from './pages/Settings'
 
 import type { Task } from './types/task'
 
@@ -48,7 +50,6 @@ function App() {
   const [activePage, setActivePage] = useState('Dashboard')
   const [openCreateForm, setOpenCreateForm] = useState(false)
 
-  // Shared task state: survives navigation between pages.
   const [tasks, setTasks] = useState<Task[]>(initialTasks)
 
   const handleCreateNew = () => {
@@ -106,6 +107,12 @@ function App() {
           />
         )
 
+      case 'Analytics':
+        return <Analytics />
+
+      case 'Settings':
+        return <Settings />
+
       default:
         return (
           <section className="rounded-2xl border border-slate-200 bg-white p-8 text-center">
@@ -123,9 +130,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+
       <Navbar />
 
       <div className="flex">
+
         <Sidebar
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
@@ -134,6 +143,7 @@ function App() {
         />
 
         <main className="min-w-0 flex-1 px-4 py-8 md:px-8">
+
           <button
             type="button"
             onClick={() => setSidebarOpen(true)}
@@ -147,7 +157,9 @@ function App() {
           </div>
 
           {renderPage()}
+
         </main>
+
       </div>
     </div>
   )
